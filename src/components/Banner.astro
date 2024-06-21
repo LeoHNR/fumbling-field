@@ -6,21 +6,32 @@ class="hero flex flex-col items-center justify-center text-center bg-black text-
 </section>
 
 <style>
-	.hero {
-		background-image: url("https://img.rtve.es/imagenes/dia-mundial-rock/1626087878668.jpg");
-		background-size: cover;
-		background-position: center;
-	}
+    .hero {
+        background-image: url("https://img.rtve.es/imagenes/dia-mundial-rock/1626087878668.jpg");
+        background-size: cover;
+        background-position: center;
+    }
 
-	.hero-title {
-		font-size: 8rem;
-		font-weight: 900;
-		letter-spacing: -0.05em;
-		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-	}
+    .hero-title {
+        font-size: 8rem; /* Tamaño grande para pantallas grandes */
+        font-weight: 900;
+        letter-spacing: -0.05em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
 
-	.hero-subtitle {
-		font-size: 1.5rem;
-	}
+    .hero-subtitle {
+        font-size: 1.5rem; /* Tamaño adecuado para pantallas grandes */
+    }
+
+    /* Media query para dispositivos con ancho hasta 640px */
+    @media (max-width: 640px) {
+        .hero-title {
+            font-size: 4rem; /* Tamaño más pequeño para pantallas pequeñas */
+        }
+
+        .hero-subtitle {
+            font-size: 1rem; /* Tamaño más pequeño para pantallas pequeñas */
+        }
+    }
 </style>
 

@@ -1,4 +1,13 @@
-<header class="flex justify-between items-center py-3 px-4 w-full max-w-6xl mx-auto">
+---
+let menuOpen = false;
+function toggleMenu() {
+    menuOpen = !menuOpen;
+}
+---
+
+<header
+    class="flex justify-between items-center py-3 px-4 w-full max-w-6xl mx-auto"
+>
     <a href="/">
         <img
             class="w-16 h-16 md:w-20 md:h-20"
@@ -7,7 +16,17 @@
         />
     </a>
 
-    <nav class="flex flex-col md:flex-row gap-y-2 md:gap-y-0 md:gap-x-10">
+    <button class="md:hidden" @click="toggleMenu">
+        <svg viewBox="0 0 100 80" width="40" height="40">
+            <rect width="100" height="20"></rect>
+            <rect y="30" width="100" height="20"></rect>
+            <rect y="60" width="100" height="20"></rect>
+        </svg>
+    </button>
+
+    <nav
+        class={`flex ${menuOpen ? "flex-col" : "hidden"} md:flex md:flex-row gap-y-2 md:gap-y-0 md:gap-x-10`}
+    >
         <a href="/">Inicio</a>
         <a href="/about">Acerca de nosotros</a>
         <a href="/artist">Artistas</a>
@@ -15,3 +34,20 @@
         <a href="/contact">Contactanos</a>
     </nav>
 </header>
+
+<style>
+    button {
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+    @media (max-width: 768px) {
+        nav {
+            display: none;
+        }
+        nav.flex {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+</style>
