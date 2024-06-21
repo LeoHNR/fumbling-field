@@ -1,0 +1,133 @@
+---
+import Layout from '../../layouts/Layout.astro';
+export async function getStaticPaths() {
+    const pages = [
+        {
+            slug: "artista-1",
+            name: "Artista 1",
+            genre: "Rock",
+            popularity: "Alta",
+            image: "https://indiecios.files.wordpress.com/2017/08/musicos-de-sesion-foto-popup.jpg",
+            biography: "Biografía del Artista 1...",
+            discography: ["Álbum 1", "Álbum 2"],
+            photos: ["/photo1.jpg", "/photo2.jpg"],
+        },
+        {
+            slug: "artista-2",
+            name: "Artista 2",
+            genre: "Rock",
+            popularity: "Alta",
+            image: "https://elsolweb.tv/wp-content/uploads/2018/12/MUSICOS-APLICACIONES.jpg",
+            biography: "Biografía del Artista 1...",
+            discography: ["Álbum 1", "Álbum 2"],
+            photos: ["/photo1.jpg", "/photo2.jpg"],
+        },
+        {
+            slug: "artista-3",
+            name: "Artista 3",
+            genre: "Pop",
+            popularity: "Media",
+            image: "https://i1.sndcdn.com/artworks-vSDG2SMFoxtV9mPx-7Lx0FA-t500x500.jpg",
+            biography: "Biografía del Artista 2...",
+            discography: ["Álbum A", "Álbum B"],
+            photos: ["/photoA.jpg", "/photoB.jpg"],
+        },
+    ];
+    return pages.map(
+        ({
+            slug,
+            name,
+            genre,
+            popularity,
+            image,
+            biography,
+            discography,
+            photos,
+        }) => {
+            return {
+                params: { slug },
+                props: {
+                    name,
+                    genre,
+                    popularity,
+                    image,
+                    biography,
+                    discography,
+                    photos,
+                },
+            };
+        },
+    );
+}
+const { name, genre, popularity, image, biography, discography, photos } =
+    Astro.props;
+---
+<Layout title={name}>
+<div class="artist-profile">
+    <img src={image} alt={`Imagen de ${name}`} class="artist-image" />
+    <h1 class="artist-name">{name}</h1>
+    <p class="artist-genre"><strong>Género:</strong> {genre}</p>
+    <p class="artist-popularity"><strong>Popularidad:</strong> {popularity}</p>
+    <h2 class="biography-title">Biografía</h2>
+    <p class="artist-biography">{biography}</p>
+    <h2 class="discography-title">Discografía</h2>
+    <ul class="artist-discography">
+        {discography.map((album) => <li>{album}</li>)}
+    </ul>
+    <h2 class="photos-title">Fotos</h2>
+    <div class="artist-photos">
+        {
+            photos.map((photo) => (
+                <img src={photo} alt={`Foto de ${name}`} class="photo-item" />
+            ))
+        }
+    </div>
+</div>
+
+<style>
+    .artist-profile {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #1a1a1a;
+        border-radius: 8px;
+    }
+    .artist-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+    .artist-name {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+    .artist-genre,
+    .artist-popularity {
+        font-size: 1.2rem;
+        margin: 10px 0;
+    }
+    .biography-title,
+    .discography-title,
+    .photos-title {
+        font-size: 1.5rem;
+        margin-top: 20px;
+        font-weight: bold;
+    }
+    .artist-biography,
+    .artist-discography {
+        margin: 10px 0;
+    }
+    .artist-photos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .photo-item {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+</style>
+</Layout>
